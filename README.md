@@ -71,7 +71,7 @@
     </style>
     <!-- Chosen Palette: Warm Paper (Neutral Beige #FDFBF7 background, Text #4A4A4A, Accents #ED8936 Orange & #48BB78 Green) -->
     <!-- Application Structure Plan: Cấu trúc SPA được thiết kế theo luồng tương tác: Tổng Quan (Dashboard) -> Kiến Thức (Concepts) -> Luyện Tập (Practice). Mục tiêu là cung cấp một lộ trình học tập logic, tập trung vào việc khắc phục các điểm yếu đã được báo cáo. Sử dụng Flexbox/Grid và hệ thống tab để đảm bảo điều hướng dễ dàng và trải nghiệm mượt mà trên mọi thiết bị. -->
-    <!-- Visualization & Content Choices: Sử dụng Chart.js (Doughnut Chart) cho phần Tổng Quan để tóm tắt nhanh tình trạng kỹ năng. Các phần Kiến Thức và Từ Vựng dùng thẻ (cards) và chức năng toggle (bật/tắt) để trình bày các lỗi sai và giải thích cụ thể, đảm bảo tính tương tác cao. Phần Luyện Tập là một công cụ Quiz với phản hồi ngay lập tức. KHÔNG sử dụng SVG, KHÔNG sử dụng Mermaid JS. -->
+    <!-- Visualization & Content Choices: Sử dụng Chart.js (Doughnut Chart) cho phần Tổng Quan để tóm tắt nhanh tình trạng kỹ năng. Các phần Kiến Thức và Từ Vựng dùng thẻ (cards) và chức năng toggle (bật/tắt) để trình bày các lỗi sai và giải thích cụ thể, đảm bảo tính tương tác cao. Phần Luyện Tập là một công cụ Quiz với 25 câu hỏi được làm sạch và sẵn sàng cho môi trường GitHub. KHÔNG sử dụng SVG, KHÔNG sử dụng Mermaid JS. -->
 </head>
 <body class="min-h-screen flex flex-col items-center py-6 px-4">
 
@@ -193,36 +193,56 @@
                 { term: "Điểm thẳng hàng", def: "Ba điểm cùng nằm trên một đường thẳng." }
             ],
             quiz: [
-                {
-                    q: "Đặt tính rồi tính: 47 + 35 = ?",
-                    options: ["72", "82", "81", "712"],
-                    correct: 1,
-                    explain: "7 + 5 = 12 (viết 2 nhớ 1). 4 + 3 = 7, thêm 1 bằng 8. Kết quả là 82."
-                },
-                {
-                    q: "Đặt tính rồi tính: 81 - 26 = ?",
-                    options: ["65", "55", "54", "64"],
-                    correct: 1,
-                    explain: "1 không trừ được 6, lấy 11 - 6 = 5 (nhớ 1). 2 thêm 1 bằng 3. 8 - 3 = 5. Kết quả là 55."
-                },
-                {
-                    q: "Số bé nhất có hai chữ số khác nhau là số nào?",
-                    options: ["10", "11", "12", "01"],
-                    correct: 0,
-                    explain: "Hàng chục bé nhất khác 0 là 1. Hàng đơn vị bé nhất khác 1 là 0. Vậy số đó là 10."
-                },
-                {
-                    q: "Lan có 14 hạc giấy. Mai gấp ít hơn Lan 5 con. Hỏi Mai gấp được bao nhiêu?",
-                    options: ["19 con", "9 con", "10 con", "11 con"],
-                    correct: 1,
-                    explain: "Bài toán 'ít hơn' dùng phép trừ: 14 - 5 = 9 con."
-                },
-                {
-                    q: "Hôm nay là thứ Tư ngày 10. Thứ Tư tuần sau là ngày bao nhiêu?",
-                    options: ["Ngày 16", "Ngày 18", "Ngày 17", "Ngày 20"],
-                    correct: 2,
-                    explain: "Một tuần có 7 ngày. Thứ Tư tuần sau là ngày: 10 + 7 = 17."
-                }
+                // 1. Phép cộng có nhớ (Cơ bản)
+                { q: "Đặt tính rồi tính: 47 + 35 = ?", options: ["72", "82", "81", "712"], correct: 1, explain: "7 + 5 = 12 (viết 2 nhớ 1). 4 + 3 = 7, thêm 1 bằng 8. Kết quả là 82." },
+                // 2. Phép trừ có nhớ (Cơ bản)
+                { q: "Đặt tính rồi tính: 81 - 26 = ?", options: ["65", "55", "54", "64"], correct: 1, explain: "1 không trừ được 6, lấy 11 - 6 = 5 (nhớ 1). 2 thêm 1 bằng 3. 8 - 3 = 5. Kết quả là 55." },
+                // 3. Cấu tạo số (Bé nhất khác nhau)
+                { q: "Số bé nhất có hai chữ số khác nhau là số nào?", options: ["10", "11", "12", "01"], correct: 0, explain: "Hàng chục bé nhất khác 0 là 1. Hàng đơn vị bé nhất khác 1 là 0. Vậy số đó là 10." },
+                // 4. Toán lời văn (Ít hơn)
+                { q: "Lan có 14 hạc giấy. Mai gấp ít hơn Lan 5 con. Hỏi Mai gấp được bao nhiêu?", options: ["19 con", "9 con", "10 con", "11 con"], correct: 1, explain: "Bài toán 'ít hơn' dùng phép trừ: 14 - 5 = 9 con." },
+                // 5. Lịch (Tuần)
+                { q: "Hôm nay là thứ Tư ngày 10. Thứ Tư tuần sau là ngày bao nhiêu?", options: ["Ngày 16", "Ngày 18", "Ngày 17", "Ngày 20"], correct: 2, explain: "Một tuần có 7 ngày. Thứ Tư tuần sau là ngày: 10 + 7 = 17." },
+                // 6. Phép cộng có nhớ (Thay đổi vị trí)
+                { q: "Tính: 56 + 18 = ?", options: ["74", "64", "68", "72"], correct: 0, explain: "6 + 8 = 14 (viết 4 nhớ 1). 5 + 1 = 6, thêm 1 bằng 7. Kết quả là 74." },
+                // 7. Phép trừ có nhớ (Từ số tròn chục)
+                { q: "Tính: 70 - 45 = ?", options: ["35", "25", "20", "30"], correct: 1, explain: "0 không trừ được 5, lấy 10 - 5 = 5 (nhớ 1). 4 thêm 1 là 5. 7 - 5 = 2. Kết quả là 25." },
+                // 8. Cấu tạo số (Lớn nhất khác nhau)
+                { q: "Số lớn nhất có hai chữ số khác nhau là số nào?", options: ["99", "89", "98", "100"], correct: 2, explain: "Hàng chục lớn nhất là 9. Hàng đơn vị lớn nhất khác 9 là 8. Kết quả là 98." },
+                // 9. Toán lời văn (Nhiều hơn)
+                { q: "Lớp 2A có 25 học sinh, lớp 2B nhiều hơn lớp 2A 7 học sinh. Hỏi lớp 2B có bao nhiêu học sinh?", options: ["32", "18", "30", "33"], correct: 0, explain: "Bài toán 'nhiều hơn' dùng phép cộng: 25 + 7 = 32 học sinh." },
+                // 10. Đại lượng (Đổi đơn vị)
+                { q: "Đoạn thẳng dài 3 dm 8 cm. Độ dài đoạn thẳng đó là bao nhiêu cm?", options: ["38 cm", "11 cm", "308 cm", "83 cm"], correct: 0, explain: "1 dm = 10 cm. Vậy 3 dm = 30 cm. 30 cm + 8 cm = 38 cm." },
+                // 11. Phép cộng 3 số
+                { q: "Tính: 15 + 27 + 3 = ?", options: ["45", "42", "40", "43"], correct: 0, explain: "15 + 27 = 42. 42 + 3 = 45." },
+                // 12. Phép trừ liên tiếp
+                { q: "Tính: 90 - 15 - 5 = ?", options: ["70", "80", "75", "85"], correct: 0, explain: "90 - 15 = 75. 75 - 5 = 70." },
+                // 13. Cấu tạo số (Liền trước)
+                { q: "Số liền trước của 60 là số nào?", options: ["61", "59", "50", "62"], correct: 1, explain: "Số liền trước là số bé hơn 1: 60 - 1 = 59." },
+                // 14. Hình học (Chu vi)
+                { q: "Một hình tam giác có 3 cạnh dài 10 cm, 8 cm và 6 cm. Chu vi của hình tam giác đó là bao nhiêu?", options: ["24 cm", "18 cm", "28 cm", "14 cm"], correct: 0, explain: "Chu vi là tổng độ dài các cạnh: 10 + 8 + 6 = 24 cm." },
+                // 15. Toán lời văn (Tìm thành phần)
+                { q: "Tìm x, biết x + 19 = 50.", options: ["21", "31", "30", "41"], correct: 1, explain: "x là số hạng chưa biết. x = Tổng - Số hạng kia. x = 50 - 19 = 31." },
+                // 16. Cộng có nhớ (2 lần nhớ)
+                { q: "Tính: 39 + 48 = ?", options: ["77", "87", "86", "79"], correct: 1, explain: "9 + 8 = 17 (viết 7 nhớ 1). 3 + 4 = 7, thêm 1 bằng 8. Kết quả là 87." },
+                // 17. Trừ có nhớ (2 lần nhớ)
+                { q: "Tính: 95 - 67 = ?", options: ["38", "28", "22", "32"], correct: 1, explain: "5 không trừ được 7, lấy 15 - 7 = 8 (nhớ 1). 6 thêm 1 là 7. 9 - 7 = 2. Kết quả là 28." },
+                // 18. Đại lượng (So sánh)
+                { q: "Chọn dấu thích hợp điền vào chỗ trống: 4 dm 5 cm ... 54 cm", options: [">", "<", "="], correct: 1, explain: "4 dm 5 cm = 40 cm + 5 cm = 45 cm. Vì 45 cm < 54 cm, nên chọn dấu <." },
+                // 19. Cấu tạo số (Liền sau)
+                { q: "Số liền sau của 99 là số nào?", options: ["98", "100", "90", "101"], correct: 1, explain: "Số liền sau là số lớn hơn 1: 99 + 1 = 100." },
+                // 20. Toán lời văn (Tổng hợp)
+                { q: "Thùng thứ nhất có 35 lít dầu, thùng thứ hai có ít hơn thùng thứ nhất 8 lít. Hỏi cả hai thùng có bao nhiêu lít dầu?", options: ["62 lít", "43 lít", "52 lít", "60 lít"], correct: 0, explain: "Thùng thứ hai có: 35 - 8 = 27 (lít). Cả hai thùng có: 35 + 27 = 62 (lít)." },
+                // 21. Hình học (Góc)
+                { q: "Một hình vuông có mấy góc vuông?", options: ["2", "4", "3", "5"], correct: 1, explain: "Hình vuông có 4 góc vuông." },
+                // 22. Đại lượng (Thời gian)
+                { q: "Kim phút chỉ số 12, kim giờ chỉ số 7. Đồng hồ đang chỉ mấy giờ?", options: ["12 giờ 7 phút", "7 giờ", "7 giờ 12 phút", "12 giờ 35 phút"], correct: 1, explain: "Kim phút chỉ số 12 là giờ đúng. Kim giờ chỉ số 7 là 7 giờ." },
+                // 23. Toán lời văn (Hiệu)
+                { q: "Một sợi dây dài 85 cm. Cắt đi 27 cm. Hỏi sợi dây còn lại dài bao nhiêu cm?", options: ["58 cm", "68 cm", "57 cm", "62 cm"], correct: 0, explain: "Sợi dây còn lại dài: 85 - 27 = 58 (cm)." },
+                // 24. Cấu tạo số (Số chẵn/lẻ)
+                { q: "Trong các số sau: 25, 48, 63, 70. Số nào là số lẻ?", options: ["48", "70", "25", "63"], correct: 2, explain: "Số lẻ là số có tận cùng là 1, 3, 5, 7, 9. Số 25 có tận cùng là 5, nên là số lẻ." },
+                // 25. Toán lời văn (Phép cộng 3 số)
+                { q: "Bác An trồng 15 cây cam, bác Bình trồng 20 cây chanh, bác Cường trồng 10 cây bưởi. Cả ba bác trồng được bao nhiêu cây?", options: ["40 cây", "45 cây", "50 cây", "35 cây"], correct: 1, explain: "Tổng số cây cả ba bác trồng là: 15 + 20 + 10 = 45 (cây)." }
             ]
         };
 
@@ -439,8 +459,8 @@
             const intro = document.createElement('div');
             intro.className = "mb-6";
             intro.innerHTML = `
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">✍️ Luyện Tập</h2>
-                <p class="text-gray-600">Hãy thử sức với 5 câu hỏi dưới đây để xem bạn đã nắm vững bài chưa nhé!</p>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">✍️ Luyện Tập (25 Câu)</h2>
+                <p class="text-gray-600">Hãy thử sức với 25 câu hỏi dưới đây để xem bạn đã nắm vững bài chưa nhé!</p>
             `;
             contentArea.appendChild(intro);
 
